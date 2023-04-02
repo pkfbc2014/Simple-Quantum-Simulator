@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>H.png</file>
+        <file>Measure.png</file>
+        <file>S.png</file>
+        <file>T.png</file>
+        <file>uf2.png</file>
+        <file>uf3.png</file>
+        <file>uf4.png</file>
+        <file>uf5.png</file>
+        <file>X.png</file>
+        <file>Y.png</file>
+        <file>Z.png</file>
+    </qresource>
+</RCC>
