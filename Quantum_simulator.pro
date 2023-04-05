@@ -34,3 +34,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     gates/images.qrc
+
+DISTFILES += \
+    Icon.ico \
+    myIcon.ico
+
+RC_ICONS = Icon.ico

@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QIcon>
 
 #include "dataset.h"
 #include "widget.h"

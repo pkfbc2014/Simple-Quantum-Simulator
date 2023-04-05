@@ -36,102 +36,6 @@
   <widget class="QLabel" name="Zgate">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>80</y>
-     <width>80</width>
-     <height>80</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="images.qrc">:/Z.png</pixmap>
-   </property>
-  </widget>
-  <widget class="QLabel" name="Measuregate">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>180</y>
-     <width>80</width>
-     <height>80</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="images.qrc">:/Measure.png</pixmap>
-   </property>
-  </widget>
-  <widget class="QLabel" name="Ufgate">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>280</y>
-     <width>80</width>
-     <height>160</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="images.qrc">:/uf2.png</pixmap>
-   </property>
-  </widget>
-  <widget class="QLabel" name="Tgate">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>280</y>
-     <width>80</width>
-     <height>80</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="images.qrc">:/T.png</pixmap>
-   </property>
-  </widget>
-  <widget class="QLabel" name="Sgate">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>180</y>
-     <width>80</width>
-     <height>80</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="images.qrc">:/S.png</pixmap>
-   </property>
-  </widget>
-  <widget class="QLabel" name="Xgate">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>380</y>
-     <width>80</width>
-     <height>80</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="images.qrc">:/X.png</pixmap>
-   </property>
-  </widget>
-  <widget class="QLabel" name="Ygate">
-   <property name="geometry">
-    <rect>
      <x>20</x>
      <y>480</y>
      <width>80</width>
@@ -142,7 +46,103 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="images.qrc">:/Y.png</pixmap>
+    <pixmap resource="gates/images.qrc">:/Z.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Measuregate">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>80</y>
+     <width>80</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gates/images.qrc">:/Measure.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Ufgate">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>160</y>
+     <width>80</width>
+     <height>170</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gates/images.qrc">:/uf2.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Tgate">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>240</y>
+     <width>80</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gates/images.qrc">:/T.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Sgate">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>160</y>
+     <width>80</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gates/images.qrc">:/S.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Xgate">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>320</y>
+     <width>80</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gates/images.qrc">:/X.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Ygate">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>400</y>
+     <width>80</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gates/images.qrc">:/Y.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="Hgate">
@@ -158,7 +158,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="images.qrc">:/H.png</pixmap>
+    <pixmap resource="gates/images.qrc">:/H.png</pixmap>
    </property>
   </widget>
   <widget class="Line" name="line">
@@ -495,7 +495,7 @@
    <property name="geometry">
     <rect>
      <x>960</x>
-     <y>480</y>
+     <y>390</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -541,9 +541,50 @@
     <string>功能区</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_12">
+   <property name="geometry">
+    <rect>
+     <x>960</x>
+     <y>490</y>
+     <width>101</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>拖动到此
+删除控件</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_9">
+   <property name="geometry">
+    <rect>
+     <x>930</x>
+     <y>440</y>
+     <width>161</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
  </widget>
  <resources>
-  <include location="images.qrc"/>
+  <include location="gates/images.qrc"/>
  </resources>
  <connections/>
 </ui>
