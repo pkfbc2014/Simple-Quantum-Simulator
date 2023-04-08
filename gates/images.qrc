@@ -4,12 +4,16 @@
         <file>Measure.png</file>
         <file>S.png</file>
         <file>T.png</file>
-        <file>uf2.png</file>
-        <file>uf3.png</file>
-        <file>uf4.png</file>
-        <file>uf5.png</file>
         <file>X.png</file>
         <file>Y.png</file>
         <file>Z.png</file>
+        <file>Cnot2.png</file>
+        <file>Cnot3.png</file>
+        <file>Cnot4.png</file>
+        <file>Cnot5.png</file>
+        <file>Swap2.png</file>
+        <file>Swap3.png</file>
+        <file>Swap4.png</file>
+        <file>Swap5.png</file>
     </qresource>
 </RCC>

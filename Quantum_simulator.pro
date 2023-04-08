@@ -37,6 +37,14 @@ RESOURCES += \
 
 DISTFILES += \
     Icon.ico \
+    gates/Cnot2.png \
+    gates/Cnot3.png \
+    gates/Cnot4.png \
+    gates/Cnot5.png \
+    gates/Swap2.png \
+    gates/Swap3.png \
+    gates/Swap4.png \
+    gates/Swap5.png \
     myIcon.ico
 
 RC_ICONS = Icon.ico

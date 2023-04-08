@@ -88,18 +88,18 @@ void Widget::dropEvent(QDropEvent *event)
             {
                 if(checkdrop(droppoint.x(), droppoint.y(), transgetebit(newIcon)) == true)  // 目标区域可以放置
                 {
-                    if(260 <= droppoint.x() && droppoint.x() <= 350)  // X坐标吸附
-                        droppoint.setX(290);
-                    else if (351 <= droppoint.x() && droppoint.x() <= 440)
+                    if(360 <= droppoint.x() && droppoint.x() <= 450)  // X坐标吸附
                         droppoint.setX(390);
-                    else if (441 <= droppoint.x() && droppoint.x() <= 530)
+                    else if (451 <= droppoint.x() && droppoint.x() <= 540)
                         droppoint.setX(490);
-                    else if (531 <= droppoint.x() && droppoint.x() <= 620)
+                    else if (541 <= droppoint.x() && droppoint.x() <= 630)
                         droppoint.setX(590);
-                    else if (621 <= droppoint.x() && droppoint.x() <= 710)
+                    else if (631 <= droppoint.x() && droppoint.x() <= 720)
                         droppoint.setX(690);
-                    else if (711 <= droppoint.x() && droppoint.x() <= 800)
+                    else if (721 <= droppoint.x() && droppoint.x() <= 810)
                         droppoint.setX(790);
+                    else if (811 <= droppoint.x() && droppoint.x() <= 900)
+                        droppoint.setX(890);
 
                     if(60 <= droppoint.y() && droppoint.y() <= 125)  // Y坐标吸附
                         droppoint.setY(80);
@@ -306,6 +306,7 @@ void Widget::on_qbit5_clicked()  // qbit5
 
 void Widget::on_Con_fun_clicked()  // 生成常函数
 {
+    totalset.realbit();  // 计算实际用到的比特数
     int f=0;
     double r=rand()/(RAND_MAX+1.0);  // 生成0-1随机数
     if(r-0.5>=0) f=0;
@@ -318,6 +319,7 @@ void Widget::on_Con_fun_clicked()  // 生成常函数
 
 void Widget::on_Bala_fun_clicked()  // 生成平衡函数
 {
+    totalset.realbit();  // 计算实际用到的比特数
     int total = totalset.pow2(2, totalset.n);  // 需要的随机数数量
     int flag = total;
 
@@ -353,7 +355,7 @@ void Widget::on_Do_clicked()
 
 bool checkin(int x,int y)  // 判断(x,y)是否在操作区内
 {
-    if ((260<=x && x<=800) && (60<=y && y<=460))
+    if ((360<=x && x<=900) && (60<=y && y<=460))
         return true;
     else
         return false;
@@ -361,7 +363,7 @@ bool checkin(int x,int y)  // 判断(x,y)是否在操作区内
 
 bool checkin_del(int x, int y)  // 判断(x,y)是否在删除区内
 {
-    if ((910<=x && x<=1100) && (440<=y && y<=600))
+    if ((1010<=x && x<=1200) && (440<=y && y<=600))
         return true;
     else
         return false;
@@ -383,17 +385,17 @@ bool checkdrop(int x, int y, int type)  // 判断类型为type的门是否可以
 int transpoint(int x, int y)  // 将label的像素位置(x,y)转换成在gate数组中的坐标(a,b)
 {
     int a=0, b=0;
-    if(260 <= x && x <= 350)
+    if(360 <= x && x <= 450)
         a=0;
-    else if (351 <= x && x <= 440)
+    else if (451 <= x && x <= 540)
         a=1;
-    else if (441 <= x && x <= 530)
+    else if (541 <= x && x <= 630)
         a=2;
-    else if (531 <= x && x <= 620)
+    else if (631 <= x && x <= 720)
         a=3;
-    else if (621 <= x && x <= 710)
+    else if (721 <= x && x <= 810)
         a=4;
-    else if (711 <= x && x <= 800)
+    else if (811 <= x && x <= 900)
         a=5;
 
     if(60 <= y && y <= 125)
