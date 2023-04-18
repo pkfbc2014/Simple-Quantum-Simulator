@@ -1,6 +1,10 @@
 #include <QApplication>
 #include <QIcon>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
+#include "E:\Anaconda-3.9\include\Python.h"
 #include "dataset.h"
 #include "widget.h"
 

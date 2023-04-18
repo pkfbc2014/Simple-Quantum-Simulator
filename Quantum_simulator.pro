@@ -37,14 +37,18 @@ RESOURCES += \
 
 DISTFILES += \
     Icon.ico \
-    gates/Cnot2.png \
-    gates/Cnot3.png \
-    gates/Cnot4.png \
-    gates/Cnot5.png \
-    gates/Swap2.png \
-    gates/Swap3.png \
-    gates/Swap4.png \
-    gates/Swap5.png \
-    myIcon.ico
+    myIcon.ico \
+    opera.py
 
 RC_ICONS = Icon.ico
+
+win32: LIBS += -LE:/Anaconda-3.9/libs/ -lpython39
+
+INCLUDEPATH += E:/Anaconda-3.9/libs
+DEPENDPATH += E:/Anaconda-3.9/libs
+
+INCLUDEPATH += E:/Anaconda-3.9/include
+DEPENDPATH += E:/Anaconda-3.9/include
+
+win32:!win32-g++: PRE_TARGETDEPS += E:/Anaconda-3.9/libs/python39.lib
+# else:win32-g++: PRE_TARGETDEPS += E:/Anaconda-3.9/libs/libpython39.a

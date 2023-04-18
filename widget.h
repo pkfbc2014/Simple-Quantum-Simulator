@@ -56,5 +56,6 @@ int transpoint(int x, int y);  // 将label的像素位置(x,y)转换成在gate�
 int transgateindex(QLabel* temp);  // QLabel到门编号的转换
 int transgetebit(QLabel* temp);  // QLabel到门type的转换
 void labelrename(QLabel* temp);  // 为新标签重新命名
+int checkMeasure();  // 检查门是否合法，返回检查值
 
 #endif // WIDGET_H

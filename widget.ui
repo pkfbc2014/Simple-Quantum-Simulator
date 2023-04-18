@@ -65,7 +65,7 @@
     <pixmap resource="gates/images.qrc">:/Measure.png</pixmap>
    </property>
   </widget>
-  <widget class="QLabel" name="Ufgate">
+  <widget class="QLabel" name="Cnotgate">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -78,7 +78,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="gates/images.qrc">:/uf2.png</pixmap>
+    <pixmap resource="gates/images.qrc">:/Cnot2.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="Tgate">
@@ -593,6 +593,22 @@
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Swapgate">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>80</y>
+     <width>80</width>
+     <height>170</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gates/images.qrc">:/Swap2.png</pixmap>
    </property>
   </widget>
  </widget>

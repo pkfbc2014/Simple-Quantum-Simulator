@@ -6,19 +6,26 @@
 #include "dataset.h"
 #include "widget.h"
 
-dataset::dataset(int n)  // init
+dataset::dataset(int n)  // 初始化
 {
     this->n = n;
     this->fxflag = false;
-    this->uftype = 0;
+    this->cnottype = 0;
+    this->swaptype = 0;
+    this->MeasureGateNum = 0;
     for(int i=0;i<5;i++)
+    {
         for(int j=0;j<6;j++)
+        {
             this->gate[i][j] = 0;
+            this->gate_type[i][j] = 1;  // 空白处看成单位阵，单位阵是1bit的
+        }
+    }
     for(int i=0;i<5;i++)
         this->qbit[i] = -1;
     for(int i=0;i<32;i++)  // 默认为常函数值是1
         this->fx[i] = 1;
-    for(int i=0;i<11;i++)
+    for(int i=0;i<15;i++)
         this->gatenum[i] = 0;
 }
 
