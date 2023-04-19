@@ -7,6 +7,7 @@
 #include "dataset.h"
 #include "widget.h"
 #include "ui_widget.h"
+#include "Python.h"
 
 QPoint sourcepoint;  // 按下鼠标那一刻，选中的label的位置（备份label起始位置）
 QString sourcename;  // 按下鼠标那一刻，选中的label的名字
@@ -406,6 +407,7 @@ void Widget::on_Do_clicked()
     }
     else
     {
+        /*=================================================================================================*/  // 将python需要的所有数据写入磁盘
         FILE* fp;  // 文件指针
         if ((fp = fopen("C:\\Users\\14768\\Desktop\\DataCache\\gate1.txt", "w")) == nullptr)  // 输出gate矩阵
             qDebug()<<"cannot open the gate1.txt!\n";
@@ -452,6 +454,23 @@ void Widget::on_Do_clicked()
             qDebug()<<"cannot open the realbitnum.txt!\n";
         fprintf(fp,"%d ",totalset.n);
         fclose(fp);
+
+        /*=================================================================================================*/  // 调用python进行运算
+        Py_SetPythonHome((const wchar_t *)(L"E://Anaconda-3.9"));  // python.exe路径
+        Py_Initialize();
+        if (!Py_IsInitialized())
+            qDebug()<<"Can not initialized Python"<<endl;
+        PyRun_SimpleString("import sys");//设置py脚本的路径
+        PyRun_SimpleString("sys.path.append('./')");//当前路径
+        PyObject* pModule = PyImport_ImportModule("opera");  // python文件名
+        if (!pModule)
+            qDebug()<< "Cant open python file!\n" << endl;
+        PyObject* pFunhello= PyObject_GetAttrString(pModule,"opera");  // python文件中的入口函数
+        if(!pFunhello)
+            qDebug()<<"Get function opera() failed"<<endl;
+        PyObject_CallFunction(pFunhello, nullptr);
+        Py_Finalize();
+        QMessageBox::information(this,"提示","已成功运行！");
     }
 }
 
