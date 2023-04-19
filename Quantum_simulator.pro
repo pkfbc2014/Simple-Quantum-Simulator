@@ -18,13 +18,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     dataset.cpp \
     main.cpp \
+    resultform.cpp \
     widget.cpp
 
 HEADERS += \
     dataset.h \
+    resultform.h \
     widget.h
 
 FORMS += \
+    resultform.ui \
     widget.ui
 
 # Default rules for deployment.

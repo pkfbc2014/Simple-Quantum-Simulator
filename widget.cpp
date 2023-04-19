@@ -7,6 +7,8 @@
 #include "dataset.h"
 #include "widget.h"
 #include "ui_widget.h"
+#include "resultform.h"
+#include "ui_resultform.h"
 #include "Python.h"
 
 QPoint sourcepoint;  // 按下鼠标那一刻，选中的label的位置（备份label起始位置）
@@ -471,6 +473,11 @@ void Widget::on_Do_clicked()
         PyObject_CallFunction(pFunhello, nullptr);
         Py_Finalize();
         QMessageBox::information(this,"提示","已成功运行！");
+
+        ResultForm *resultwindow = new ResultForm;  // 打开新窗口显示测量结果
+        resultwindow->setWindowTitle("Result");
+        resultwindow->setFixedSize(300, 450);
+        resultwindow->show();
     }
 }
 
