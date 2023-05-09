@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
+    <width>1800</width>
     <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Widget</string>
   </property>
-  <widget class="QLabel" name="label_9">
+  <widget class="QLabel" name="title1">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -179,7 +179,7 @@
     <rect>
      <x>370</x>
      <y>110</y>
-     <width>621</width>
+     <width>1221</width>
      <height>20</height>
     </rect>
    </property>
@@ -199,7 +199,7 @@
     <rect>
      <x>370</x>
      <y>200</y>
-     <width>621</width>
+     <width>1221</width>
      <height>20</height>
     </rect>
    </property>
@@ -219,7 +219,7 @@
     <rect>
      <x>370</x>
      <y>290</y>
-     <width>621</width>
+     <width>1221</width>
      <height>20</height>
     </rect>
    </property>
@@ -239,7 +239,7 @@
     <rect>
      <x>370</x>
      <y>380</y>
-     <width>621</width>
+     <width>1221</width>
      <height>20</height>
     </rect>
    </property>
@@ -259,7 +259,7 @@
     <rect>
      <x>370</x>
      <y>470</y>
-     <width>621</width>
+     <width>1221</width>
      <height>20</height>
     </rect>
    </property>
@@ -274,10 +274,10 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="label_10">
+  <widget class="QLabel" name="title2">
    <property name="geometry">
     <rect>
-     <x>630</x>
+     <x>930</x>
      <y>20</y>
      <width>81</width>
      <height>21</height>
@@ -402,7 +402,7 @@
   <widget class="Line" name="line_8">
    <property name="geometry">
     <rect>
-     <x>1010</x>
+     <x>1610</x>
      <y>10</y>
      <width>20</width>
      <height>581</height>
@@ -412,10 +412,10 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="Con_fun">
+  <widget class="QPushButton" name="Example_1">
    <property name="geometry">
     <rect>
-     <x>1060</x>
+     <x>1660</x>
      <y>100</y>
      <width>93</width>
      <height>51</height>
@@ -430,14 +430,14 @@
 } </string>
    </property>
    <property name="text">
-    <string>生成
-常函数</string>
+    <string>1比特
+示例电路</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Bala_fun">
+  <widget class="QPushButton" name="Example_2">
    <property name="geometry">
     <rect>
-     <x>1060</x>
+     <x>1660</x>
      <y>200</y>
      <width>93</width>
      <height>51</height>
@@ -452,14 +452,14 @@
 } </string>
    </property>
    <property name="text">
-    <string>生成
-平衡函数</string>
+    <string>2比特
+示例电路</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Check_fun">
+  <widget class="QPushButton" name="Example_3">
    <property name="geometry">
     <rect>
-     <x>1060</x>
+     <x>1660</x>
      <y>300</y>
      <width>93</width>
      <height>51</height>
@@ -474,14 +474,14 @@
 } </string>
    </property>
    <property name="text">
-    <string>查看
-当前f(x)</string>
+    <string>3比特
+示例电路</string>
    </property>
   </widget>
   <widget class="QPushButton" name="Do">
    <property name="geometry">
     <rect>
-     <x>1060</x>
+     <x>1660</x>
      <y>390</y>
      <width>93</width>
      <height>28</height>
@@ -508,10 +508,10 @@
     <string>运行</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_11">
+  <widget class="QLabel" name="title3">
    <property name="geometry">
     <rect>
-     <x>1070</x>
+     <x>1670</x>
      <y>20</y>
      <width>81</width>
      <height>21</height>
@@ -528,10 +528,10 @@
     <string>功能区</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_12">
+  <widget class="QLabel" name="DeleteLabel">
    <property name="geometry">
     <rect>
-     <x>1060</x>
+     <x>1660</x>
      <y>490</y>
      <width>101</width>
      <height>61</height>
@@ -552,7 +552,7 @@
   <widget class="Line" name="line_9">
    <property name="geometry">
     <rect>
-     <x>1030</x>
+     <x>1630</x>
      <y>440</y>
      <width>161</width>
      <height>20</height>

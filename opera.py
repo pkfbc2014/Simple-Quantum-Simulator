@@ -1,5 +1,3 @@
-# This Python file uses the following encoding: utf-8
-
 import numpy as np
 import math
 
@@ -228,8 +226,8 @@ def opera():
     kron_intestate = 1
     for i in range(real_bit[0][0]):  # 初始比特状态
         kron_intestate = np.kron(kron_intestate, state_index(init_state[0][i]))
-    mid_state = np.identity(int(math.pow(2, real_bit[0][0])))
-    for j in range(6):  # 中间逻辑门
+    mid_state = kron_intestate
+    for j in range(13):  # 中间逻辑门
         kron_gatej = 1
         i = 0
         while i < real_bit[0][0]:
@@ -238,37 +236,38 @@ def opera():
             else:  # 特殊考虑Measure门，其实就是不管这一列
                 kron_gatej = np.kron(kron_gatej, I_gate)
             i = i + gate_type[i][j]
-        mid_state = np.dot(mid_state, kron_gatej)
-    mid_state = np.dot(mid_state, kron_intestate)
+        mid_state = np.dot(kron_gatej, mid_state)  # 得到没有进行测量操作的中间态向量
 
-    MeasureResult = []  # 最终测量结果
-
-    for i in range(int(math.pow(2, MeasureGateNum))):
-        k = 0
-        temp = np.zeros([1, real_bit[0][0]], dtype=int)
-        for j in range(real_bit[0][0]):
-            if MeasureState[0][j] == 0:  # 不是测量门
-                temp[0][j] = 2  # 用2表示单位阵
-            else:
-                temp[0][j] = Measurematrix[i][k]
-                k += 1
-        tempM = 1  # 测量门
-        for j in range(real_bit[0][0]):
-            if temp[0][j] == 0:
-                tempM = np.kron(tempM, state_index(0))
-            elif temp[0][j] == 1:
-                tempM = np.kron(tempM, state_index(1))
-            else:
-                tempM = np.kron(tempM, matrix_index(1, 0))
-        tempM = np.dot(tempM, np.conjugate(np.transpose(tempM)))  # 构造测量门
-        result = np.dot(np.dot(np.conjugate(np.transpose(mid_state)), tempM), mid_state)  # 测量
-        MeasureResult.append(result)
-
-    fp = open("C:/Users/14768/Desktop/DataCache/MeasureResult.txt", "w")  # a+ 如果文件不存在就创建。存在就在文件内容的后面继续追加
-    for i in range(int(math.pow(2, MeasureGateNum))):
-        print(Measurematrix[i], file=fp, end=':')
-        print(MeasureResult[i], file=fp)
+    fp = open("C:/Users/14768/Desktop/DataCache/MiddleState.txt", "w")  # 输出振幅信息
+    for i in range(len(mid_state)):
+        print(np.round(mid_state[i], 2), file=fp, end='k')
     fp.close()
 
-# if__name__ == "__main__":
-#     pass
+    if real_bit[0][1] != 0:  # 有测量门，输出测量结果
+        MeasureResult = []  # 最终测量结果
+
+        for i in range(int(math.pow(2, MeasureGateNum))):
+            k = 0
+            temp = np.zeros([1, real_bit[0][0]], dtype=int)
+            for j in range(real_bit[0][0]):
+                if MeasureState[0][j] == 0:  # 不是测量门
+                    temp[0][j] = 2  # 用2表示单位阵
+                else:
+                    temp[0][j] = Measurematrix[i][k]
+                    k += 1
+            tempM = 1  # 测量门
+            for j in range(real_bit[0][0]):  # 构造测量门
+                if temp[0][j] == 0:  # 测量|0>
+                    tempM = np.kron(tempM, np.dot(state_index(0), np.conjugate(np.transpose(state_index(0)))))
+                elif temp[0][j] == 1:  # 测量|1>
+                    tempM = np.kron(tempM, np.dot(state_index(1), np.conjugate(np.transpose(state_index(1)))))
+                else:  # 单位阵
+                    tempM = np.kron(tempM, matrix_index(1, 0))
+            result = np.dot(np.dot(np.conjugate(np.transpose(mid_state)), tempM), mid_state)  # 测量：<φ|M|φ>
+            MeasureResult.append(result)
+
+        fp = open("C:/Users/14768/Desktop/DataCache/MeasureResult.txt", "w")
+        for i in range(int(math.pow(2, MeasureGateNum))):
+            print(Measurematrix[i], file=fp, end=':')
+            print(np.round(MeasureResult[i], 2), file=fp, end='k')
+        fp.close()

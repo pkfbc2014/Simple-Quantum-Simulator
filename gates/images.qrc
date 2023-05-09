@@ -15,5 +15,8 @@
         <file>Swap3.png</file>
         <file>Swap4.png</file>
         <file>Swap5.png</file>
+        <file>example1.png</file>
+        <file>example2.png</file>
+        <file>example3.png</file>
     </qresource>
 </RCC>

@@ -17,16 +17,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     dataset.cpp \
+    example1.cpp \
+    example2.cpp \
+    example3.cpp \
     main.cpp \
     resultform.cpp \
     widget.cpp
 
 HEADERS += \
     dataset.h \
+    example1.h \
+    example2.h \
+    example3.h \
     resultform.h \
     widget.h
 
 FORMS += \
+    example1.ui \
+    example2.ui \
+    example3.ui \
     resultform.ui \
     widget.ui
 

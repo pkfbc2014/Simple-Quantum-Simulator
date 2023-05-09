@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QLabel>
 
+#include "Python.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 class QDragEnterEvent;
@@ -36,9 +38,9 @@ private slots:
     void on_qbit3_clicked();
     void on_qbit4_clicked();
     void on_qbit5_clicked();
-    void on_Con_fun_clicked();
-    void on_Bala_fun_clicked();
-    void on_Check_fun_clicked();
+    void on_Example_1_clicked();
+    void on_Example_2_clicked();
+    void on_Example_3_clicked();
     void on_Do_clicked();
 
 private:

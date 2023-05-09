@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>450</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,6 +31,25 @@
    </property>
    <property name="text">
     <string>测量结果</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Datalabel">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>60</y>
+     <width>221</width>
+     <height>631</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Agency FB</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>无</string>
    </property>
   </widget>
  </widget>

@@ -3,12 +3,19 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <string.h>
+#include <stdlib.h>
 
 #include "dataset.h"
 #include "widget.h"
 #include "ui_widget.h"
 #include "resultform.h"
 #include "ui_resultform.h"
+#include "example1.h"
+#include "ui_example1.h"
+#include "example2.h"
+#include "ui_example2.h"
+#include "example3.h"
+#include "ui_example3.h"
 #include "Python.h"
 
 QPoint sourcepoint;  // 按下鼠标那一刻，选中的label的位置（备份label起始位置）
@@ -27,6 +34,7 @@ Widget::Widget(QWidget *parent)
 
 Widget::~Widget()
 {
+    Py_Finalize();
     delete ui;
 }
 
@@ -60,7 +68,8 @@ void Widget::dragMoveEvent(QDragMoveEvent *event)
 
 void Widget::dropEvent(QDropEvent *event)
 {
-    if (event->mimeData()->hasFormat("application/x-dnditemdata")) {
+    if (event->mimeData()->hasFormat("application/x-dnditemdata"))
+    {
         QByteArray itemData = event->mimeData()->data("application/x-dnditemdata");
         QDataStream dataStream(&itemData, QIODevice::ReadOnly);
 
@@ -95,18 +104,7 @@ void Widget::dropEvent(QDropEvent *event)
             {
                 if(checkdrop(droppoint.x(), droppoint.y(), transgetebit(newIcon)) == true)  // 目标区域可以放置
                 {
-                    if(360 <= droppoint.x() && droppoint.x() <= 450)  // X坐标吸附
-                        droppoint.setX(390);
-                    else if (451 <= droppoint.x() && droppoint.x() <= 540)
-                        droppoint.setX(490);
-                    else if (541 <= droppoint.x() && droppoint.x() <= 630)
-                        droppoint.setX(590);
-                    else if (631 <= droppoint.x() && droppoint.x() <= 720)
-                        droppoint.setX(690);
-                    else if (721 <= droppoint.x() && droppoint.x() <= 810)
-                        droppoint.setX(790);
-                    else if (811 <= droppoint.x() && droppoint.x() <= 900)
-                        droppoint.setX(890);
+                    droppoint.setX(390+static_cast<int>(floor((droppoint.x()-390)/90))*90);  // X坐标吸附
 
                     if(60 <= droppoint.y() && droppoint.y() <= 125)  // Y坐标吸附
                         droppoint.setY(80);
@@ -136,7 +134,7 @@ void Widget::dropEvent(QDropEvent *event)
                         event->accept();
                     } else {  // 工具区移动到操作区的框，则复制
                         event->acceptProposedAction();
-                        if(sourcename.contains("Measure"))
+                        if(sourcename.contains("Measure"))  // 特殊考虑测量门
                             totalset.MeasureGateNum++;
                     }
                     int bitnum2 = transgetebit(newIcon);
@@ -150,7 +148,8 @@ void Widget::dropEvent(QDropEvent *event)
                 }
             }
         }
-    } else {
+    }
+    else {
         event->ignore();
     }
 }
@@ -194,7 +193,7 @@ void Widget::mousePressEvent(QMouseEvent *event)
     }
 }
 
-bool Widget::eventFilter(QObject *watched, QEvent *event)  // 为Uf门添加右击事件
+bool Widget::eventFilter(QObject *watched, QEvent *event)  // 为多比特门添加右击事件
 {
     if(watched == ui->Cnotgate)
     {
@@ -270,6 +269,7 @@ bool Widget::eventFilter(QObject *watched, QEvent *event)  // 为Uf门添加右�
             emit sendObject(ui->Swapgate);
         }
     }
+    // return true;  // 这行代码加上会导致无法显示
 }
 
 void Widget::on_qbit1_clicked()  // qbit1
@@ -342,54 +342,36 @@ void Widget::on_qbit5_clicked()  // qbit5
     }
 }
 
-void Widget::on_Con_fun_clicked()  // 生成常函数
+void Widget::on_Example_1_clicked()
 {
-    totalset.realbit();  // 计算实际用到的比特数
-    int f=0;
-    double r=rand()/(RAND_MAX+1.0);  // 生成0-1随机数
-    if(r-0.5>=0) f=0;
-    else f=1;
-    for(int i=0;i<totalset.pow2(2,totalset.n);i++)
-        totalset.fx[i] = f;
-    totalset.fxflag = false;
-    QMessageBox::information(this,"提示","常函数已生成");
+    example1 *example1window = new example1;
+    example1window->setWindowTitle("Example1");
+    example1window->setFixedSize(1200, 550);
+    example1window->show();
 }
 
-void Widget::on_Bala_fun_clicked()  // 生成平衡函数
+void Widget::on_Example_2_clicked()
 {
-    totalset.realbit();  // 计算实际用到的比特数
-    int total = totalset.pow2(2, totalset.n);  // 2^n
-
-    memset(totalset.fx,0,sizeof(totalset.fx));
-
-    for(int i=0;i<total;i++)
-    {
-        if(i % 2 == 0)  // 偶数
-            totalset.fx[i] = 1;
-        else
-            totalset.fx[i] = 0;
-    }
-    totalset.fxflag = true;
-    QMessageBox::information(this,"提示","平衡函数已生成");
+    example2 *example2window = new example2;
+    example2window->setWindowTitle("Example2");
+    example2window->setFixedSize(1200, 550);
+    example2window->show();
 }
 
-void Widget::on_Check_fun_clicked()  // 查看当前是什么函数
+void Widget::on_Example_3_clicked()
 {
-    if(totalset.fxflag == false)
-        QMessageBox::information(this,"提示","当前f(x)是常函数");
-    else
-        QMessageBox::information(this,"提示","当前f(x)是平衡函数");
-
-    // 应当输出f(x)的值和比特数n
-
+    example3 *example3window = new example3;
+    example3window->setWindowTitle("Example3");
+    example3window->setFixedSize(1200, 550);
+    example3window->show();
 }
 
 void Widget::on_Do_clicked()
 {
     totalset.realbit();  // 计算实际用到的比特数
-    if(checkMeasure() == 1)  // 没有进行测量操作，非法
+    if(checkMeasure() == 1)  // 运行空电路，非法
     {
-        QMessageBox::information(this,"提示","必须包含测量操作");
+        QMessageBox::information(this,"提示","不允许运行空电路");
         return;
     }
     else if(checkMeasure() == 2)  // 同一行多个测量门，非法
@@ -409,31 +391,26 @@ void Widget::on_Do_clicked()
     }
     else
     {
-        /*=================================================================================================*/  // 将python需要的所有数据写入磁盘
+        /*===============================================================================*/  // 输出python所需数据到磁盘
         FILE* fp;  // 文件指针
-        if ((fp = fopen("C:\\Users\\14768\\Desktop\\DataCache\\gate1.txt", "w")) == nullptr)  // 输出gate矩阵
+        FILE* fp1;  // 文件指针1
+        FILE* fp2;  // 文件指针1
+        if ((fp1 = fopen("C:\\Users\\14768\\Desktop\\DataCache\\gate1.txt", "w")) == nullptr)  // 输出gate矩阵
             qDebug()<<"cannot open the gate1.txt!\n";
-        for(int i=0;i<5;i++)
-        {
-            for(int j=0;j<6;j++)
-            {
-                fprintf(fp,"%d ",totalset.gate[i][j]);
-            }
-            fprintf(fp,"\n");
-        }
-        fclose(fp);
-
-        if ((fp = fopen("C:\\Users\\14768\\Desktop\\DataCache\\gate2.txt", "w")) == nullptr)  // 输出type表示的gate矩阵（方便Python计算）
+        if ((fp2 = fopen("C:\\Users\\14768\\Desktop\\DataCache\\gate2.txt", "w")) == nullptr)  // 输出type表示的gate矩阵（方便Python计算）
             qDebug()<<"cannot open the gate2.txt!\n";
         for(int i=0;i<5;i++)
         {
-            for(int j=0;j<6;j++)
+            for(int j=0;j<13;j++)
             {
-                fprintf(fp,"%d ",totalset.gate_type[i][j]);
+                fprintf(fp1,"%d ",totalset.gate[i][j]);
+                fprintf(fp2,"%d ",totalset.gate_type[i][j]);
             }
-            fprintf(fp,"\n");
+            fprintf(fp1,"\n");
+            fprintf(fp2,"\n");
         }
-        fclose(fp);
+        fclose(fp1);
+        fclose(fp2);
 
         if ((fp = fopen("C:\\Users\\14768\\Desktop\\DataCache\\inistate.txt", "w")) == nullptr)  // 输出初始比特态
             qDebug()<<"cannot open the inistate.txt!\n";
@@ -452,38 +429,43 @@ void Widget::on_Do_clicked()
         }
         fclose(fp);
 
-        if ((fp = fopen("C:\\Users\\14768\\Desktop\\DataCache\\realbitnum.txt", "w")) == nullptr)  // 输出真实用到的比特数
+        if ((fp = fopen("C:\\Users\\14768\\Desktop\\DataCache\\realbitnum.txt", "w")) == nullptr)  // 输出真实用到的比特数和用到的测量门数量
             qDebug()<<"cannot open the realbitnum.txt!\n";
-        fprintf(fp,"%d ",totalset.n);
+        fprintf(fp,"%d %d ",totalset.n, totalset.MeasureGateNum);
         fclose(fp);
 
-        /*=================================================================================================*/  // 调用python进行运算
+        /*===============================================================================*/  // 调用Python
         Py_SetPythonHome((const wchar_t *)(L"E://Anaconda-3.9"));  // python.exe路径
         Py_Initialize();
         if (!Py_IsInitialized())
-            qDebug()<<"Can not initialized Python"<<endl;
+        {
+            qDebug()<<"can not initialize Python";
+        }
         PyRun_SimpleString("import sys");//设置py脚本的路径
         PyRun_SimpleString("sys.path.append('./')");//当前路径
-        PyObject* pModule = PyImport_ImportModule("opera");  // python文件名
+        PyObject* pModule = PyImport_ImportModule("opera");  // 这里的temp就是创建的python文件
         if (!pModule)
-            qDebug()<< "Cant open python file!\n" << endl;
-        PyObject* pFunhello= PyObject_GetAttrString(pModule,"opera");  // python文件中的入口函数
-        if(!pFunhello)
-            qDebug()<<"Get function opera() failed"<<endl;
-        PyObject_CallFunction(pFunhello, nullptr);
+            qDebug()<< "can not open python file!\n" << endl;
+        PyObject* pFunopera= PyObject_GetAttrString(pModule,"opera");  // 这里的hellow就是python文件定义的函数
+        if(!pFunopera)
+            qDebug()<<"Get function opera failed"<<endl;
+        PyObject_CallFunction(pFunopera,nullptr);
         Py_Finalize();
+
+        /*===============================================================================*/  // 显示测量结果
         QMessageBox::information(this,"提示","已成功运行！");
 
         ResultForm *resultwindow = new ResultForm;  // 打开新窗口显示测量结果
+        resultwindow->LoadData();  // 显示测量结果到label上
         resultwindow->setWindowTitle("Result");
-        resultwindow->setFixedSize(300, 450);
+        resultwindow->setFixedSize(300, 700);
         resultwindow->show();
     }
 }
 
 bool checkin(int x,int y)  // 判断(x,y)是否在操作区内
 {
-    if ((360<=x && x<=900) && (60<=y && y<=460))
+    if ((390<=x && x<=1530) && (60<=y && y<=460))
         return true;
     else
         return false;
@@ -491,7 +473,7 @@ bool checkin(int x,int y)  // 判断(x,y)是否在操作区内
 
 bool checkin_del(int x, int y)  // 判断(x,y)是否在删除区内
 {
-    if ((1010<=x && x<=1200) && (440<=y && y<=600))
+    if ((1610<=x && x<=1800) && (440<=y && y<=600))
         return true;
     else
         return false;
@@ -513,18 +495,8 @@ bool checkdrop(int x, int y, int type)  // 判断类型为type的门是否可以
 int transpoint(int x, int y)  // 将label的像素位置(x,y)转换成在gate数组中的坐标(a,b)
 {
     int a=0, b=0;
-    if(360 <= x && x <= 450)
-        a=0;
-    else if (451 <= x && x <= 540)
-        a=1;
-    else if (541 <= x && x <= 630)
-        a=2;
-    else if (631 <= x && x <= 720)
-        a=3;
-    else if (721 <= x && x <= 810)
-        a=4;
-    else if (811 <= x && x <= 900)
-        a=5;
+
+    a = static_cast<int>(floor((x-390)/90));
 
     if(60 <= y && y <= 125)
         b=0;
@@ -643,14 +615,14 @@ void labelrename(QLabel* temp)  // 为新标签重新命名
 
 int checkMeasure()  // 检查门是否合法，返回检查值：0-通过检查；1-测量门数量不足；2-同一行多个测量门；3-测量门不在同一列；4-前realbit行存在空行
 {
-    if(totalset.MeasureGateNum == 0) return 1;  // 测量门数量不足
+    if(totalset.n == 0) return 1;  // 空电路，非法
 
     int MeasureGateLine[5] = {0};
-    int MeasureGateRow[6] = {0};
+    int MeasureGateRow[13] = {0};
     int GateLine[5] = {0};
     for(int i=0;i<5;i++)
     {
-        for(int j=0;j<6;j++)
+        for(int j=0;j<13;j++)
         {
             if(totalset.gate[i][j]!=0)
                 GateLine[i]++;
@@ -673,7 +645,7 @@ int checkMeasure()  // 检查门是否合法，返回检查值：0-通过检查�
     }
 
     bool flag_row = false;
-    for(int j=0;j<6;j++)
+    for(int j=0;j<13;j++)
     {
         if(MeasureGateRow[j]!=0 && flag_row == false)
             flag_row = true;
@@ -683,7 +655,7 @@ int checkMeasure()  // 检查门是否合法，返回检查值：0-通过检查�
 
     for(int i=0;i<5;i++)  // 拷贝到全局变量中
         totalset.GateLine_1[i] = MeasureGateLine[i];
-    for(int j=0;j<6;j++)  // 拷贝到全局变量中
+    for(int j=0;j<13;j++)  // 拷贝到全局变量中
         totalset.GateRow_1[j] = MeasureGateRow[j];
 
     return 0;

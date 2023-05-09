@@ -15,7 +15,7 @@ dataset::dataset(int n)  // 初始化
     this->MeasureGateNum = 0;
     for(int i=0;i<5;i++)
     {
-        for(int j=0;j<6;j++)
+        for(int j=0;j<13;j++)
         {
             this->gate[i][j] = 0;
             this->gate_type[i][j] = 1;  // 空白处看成单位阵，单位阵是1bit的

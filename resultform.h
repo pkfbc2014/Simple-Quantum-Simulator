@@ -13,6 +13,7 @@ class ResultForm : public QWidget
 
 public:
     explicit ResultForm(QWidget *parent = nullptr);
+    void LoadData();  // 载入测量结果到文本框中
     ~ResultForm();
 
 private:
