@@ -268,6 +268,7 @@ def opera():
 
         fp = open("C:/Users/14768/Desktop/DataCache/MeasureResult.txt", "w")
         for i in range(int(math.pow(2, MeasureGateNum))):
+            print("|fai{}>".format(i), file=fp, end='-')
             print(Measurematrix[i], file=fp, end=':')
-            print(np.round(MeasureResult[i], 2), file=fp, end='k')
+            print(np.round(MeasureResult[i][0][0], 2), file=fp, end='k')
         fp.close()
