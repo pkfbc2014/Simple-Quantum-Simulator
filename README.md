@@ -14,5 +14,10 @@
 
 ​	本项目提供了一个使用Qt和Python搭建的简易量子模拟平台，界面类似本源、Quirk，并提供了几种常用的逻辑门。拖拽的实现基于Qt自带的draggable Demo，工作量到位，注释详实，被评为校级本科优秀毕业设计，适合平台开发者学习和使用。
 
-![处理逻辑](\readme-images\处理逻辑.png)
+![处理逻辑](readme-images/处理逻辑.png "处理逻辑")
 
+![平台主界面](readme-images/平台主界面.png "平台主界面")
+
+![示例界面](readme-images/示例界面.png "示例界面")
+
+![测量结果](readme-images/测量结果.png "测量结果")
